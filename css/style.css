@@ -21,3 +21,7 @@
 form{
     display: contents!important;
 }
+.pstwtbl{
+    display: inline-block;
+    width: 200px;
+}

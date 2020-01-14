@@ -47,7 +47,7 @@ fl.addEventListener('change', readSingleFile, false);
 //create header
 fl.addEventListener('change', e => {
     tblcnt.innerHTML = '<h1>Program</h1><table class="table-bordered asmtbl"><thead><tr class="thd"><th class="p-1">label</th><th class="p-1">mnemonic</th><th class="p-1">operand</th></tr></thead><tbody class="tbdy"></tbody></table>';
-   
+
 });
 //event to handle new array of values
 
@@ -199,7 +199,7 @@ ob.addEventListener('click', e => {
 
         if (arr[i][1] != "WORD" && arr[i][1] != "BYTE" && arr[i][1] != "RESW" && arr[i][1] != "RESB") {
             //pick address from symbol table
-            pastw.innerHTML += `<h5>${i} - ${arr[i][1]} - ${arr[i][2]} </h5><table class="table-bordered"><thead><tr class=""><th class="p-1">OP-Code</th><th class="p-1">X</th><th class="p-1">ADDRESS</th></tr></thead><tbody class="tbdysym"><tr><td></td><td>${X}</td><td>${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td></tr></tbody></table>`;
+            pastw.innerHTML += `<div class="pstwtbl"><h5>${i} - ${arr[i][1]} - ${arr[i][2]} </h5><table class="table-bordered"><thead><tr class=""><th class="p-1">OP-Code</th><th class="p-1">X</th><th class="p-1">ADDRESS</th></tr></thead><tbody class="tbdysym"><tr><td></td><td>${X}</td><td>${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td></tr></tbody></table></div>`;
         }
     }
 
