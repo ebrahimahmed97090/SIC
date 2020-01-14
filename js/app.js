@@ -1,9 +1,9 @@
 //create array of empty string to set it into string to not get NaN error
-let arr = [""];
+let arr = [];
 let startadress;
 let rws;
 let newtd;
-let adr = [""];
+let adr = [];
 let passone = document.querySelector('.passon');
 let cadr = document.querySelector(".cadr");
 let tblhd = document.querySelector('.thd');
@@ -16,13 +16,13 @@ let newrow;
 let symbtbl = document.querySelector('.tbdysym');
 let ob = document.querySelector('.ob');
 let pastw = document.querySelector('.passtw');
-let symboltable = Array(Array(), Array());
+let symboltable = [[], []];
 
 //function to read assembly problem and turn it into 2d array
 function readSingleFile(evt) {
-    var f = evt.target.files[0];
+    let f = evt.target.files[0];
     if (f) {
-        var r = new FileReader();
+        let r = new FileReader();
         r.onload = function (e) {
             let contents = e.target.result;
             let ct = r.result;
@@ -31,7 +31,7 @@ function readSingleFile(evt) {
             lines.forEach((line, index) => {
                 arr[index] = line.split('\t');
             })
-        }
+        };
         r.readAsText(f);
 
     } else {
@@ -46,8 +46,8 @@ fl.addEventListener('change', readSingleFile, false);
 //create display the file after parse it into an array
 //create header
 fl.addEventListener('change', e => {
-    tblcnt.innerHTML = '<table class="table-bordered asmtbl"><thead><tr class="thd"><th class="p-1">label</th><th class="p-1">mnemonic</th><th class="p-1">operand</th></tr></thead><tbody class="tbdy"></tbody></table>';
-
+    tblcnt.innerHTML = '<h1>Program</h1><table class="table-bordered asmtbl"><thead><tr class="thd"><th class="p-1">label</th><th class="p-1">mnemonic</th><th class="p-1">operand</th></tr></thead><tbody class="tbdy"></tbody></table>';
+   
 });
 //event to handle new array of values
 
@@ -68,9 +68,19 @@ sub.addEventListener('submit', e => {
             rws[i].appendChild(newtd);
             newtd.innerText = arr[i][k];
             newtd.classList.add('p-1')
+            if (k == 0) {
+                newtd.classList.add('label')
+            }
+            if (k == 1) {
+                newtd.classList.add('memonic')
+            }
+            if (k == 2) {
+                newtd.classList.add('operand')
+            }
+
         }
     }
-//declare first adress inside the event because javascript is async language (0x) for hex in js
+//declare first address inside the event because javascript is async language (0x) for hex in js
     startadress = parseInt("0x" + arr[0][2]);
 });
 //create array of addresses
@@ -91,13 +101,13 @@ cadr.addEventListener('click', e => {
         newtd.classList.add('p-1')
         if (i == 0) {
             adr.push(startadress);
-            newtd.innerText = startadress.toString(16).toString().padStart(4, "0");
+            newtd.innerText = startadress.toString(16).padStart(4, "0");
         } else if (arr[i][1] == "WORD") {
             startadress += 3;
             adr.push(startadress);
 
         } else if (arr[i][1] == "RESW") {
-            startadress += (3 * parseInt(arr[i][2]))
+            startadress += (3 * parseInt(arr[i][2]));
             adr.push(startadress);
 
         } else if (arr[i][1] == "BYTE" && arr[i][2][0] == 'X' && arr[i][2][1] == '`') {
@@ -124,7 +134,10 @@ cadr.addEventListener('click', e => {
         }
         if (i != 0) {
 
-            newtd.innerText = adr[i].toString(16).toString().padStart(4, "0");
+            newtd.innerText = adr[i].toString(16).padStart(4, "0");
+
+            newtd.classList.add('address')
+
         }
     }
 //symbol table
@@ -137,7 +150,7 @@ cadr.addEventListener('click', e => {
 
         } else {
             symboltable[0].push(arr[a][0]);
-            symboltable[1].push(adr[a - 1].toString(16));
+            symboltable[1].push(adr[a - 1]);
             newrow = document.createElement("TR");
             symbtbl.appendChild(newrow);
             newrow.classList.add("rwsym");
@@ -145,34 +158,49 @@ cadr.addEventListener('click', e => {
             newrow.appendChild(newtd);
             newtd.innerText = arr[a][0];
             newtd.classList.add('p-1');
+            newtd.classList.add('sym');
             newtd = document.createElement("TD");
             newrow.appendChild(newtd);
-            newtd.innerText = adr[a].toString(16);
+            newtd.innerText = adr[a].toString(16).padStart(4, "0");
             newtd.classList.add('p-1');
+            newtd.classList.add('adr');
+
 
         }
     }
-    console.log(arr);
-    console.log(symboltable);
+
 });
 
+let k
 ob.addEventListener('click', e => {
+    pastw.innerHTML += "<h2>pass two</h2>"
+    let indx;
     let X;
     for (let i = 1; i < arr.length - 1; i++) {
-        //indexed
+        // console.log(arr[i][2].value === symboltable[0][i].value)
         if (arr[i][2].search(',X') == -1) {
             X = 0;
         } else if (arr[i][2].search(',X') != -1) {
+
+            let nw = arr[i][2].trim().slice(0, -2)
+            arr[i][2] = nw
+
             X = 1;
+
         }
-        //console.log(symboltable[0].);
+        symboltable[0].forEach((symbl, index) => {
+
+            if (arr[i][2].trim() == symbl.trim()) {
+                indx = index;
+            }
+
+        })
+        //indexed
+
         if (arr[i][1] != "WORD" && arr[i][1] != "BYTE" && arr[i][1] != "RESW" && arr[i][1] != "RESB") {
-
-
             //pick address from symbol table
-            pastw.innerHTML += `<h1>${i} - ${arr[i][1]} - ${arr[i][2]} </h1><table class="table-bordered"><thead><tr class=""><th class="p-1">OP-Code</th><th class="p-1">X</th><th class="p-1">ADDRESS</th></tr></thead><tbody class="tbdysym"><tr><td></td><td>${X}</td><td>${adr[i - 1].toString(16).toString().padStart(4, "0")}</td></tr></tbody></table>`;
+            pastw.innerHTML += `<h5>${i} - ${arr[i][1]} - ${arr[i][2]} </h5><table class="table-bordered"><thead><tr class=""><th class="p-1">OP-Code</th><th class="p-1">X</th><th class="p-1">ADDRESS</th></tr></thead><tbody class="tbdysym"><tr><td></td><td>${X}</td><td>${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td></tr></tbody></table>`;
         }
     }
-
 
 });

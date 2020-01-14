@@ -95,6 +95,10 @@
       <workItem from="1577642963115" duration="2922000" />
       <workItem from="1577657626372" duration="60000" />
       <workItem from="1577770624319" duration="1379000" />
+      <workItem from="1578814944155" duration="15603000" />
+      <workItem from="1578899546256" duration="11193000" />
+      <workItem from="1578932439295" duration="1790000" />
+      <workItem from="1578985696444" duration="4604000" />
     </task>
     <servers />
   </component>
@@ -110,14 +114,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="402" y="38" key="#app.js/0.0.1366.728@0.0.1366.728" timestamp="1575680488870" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1578838304142">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1578838304142" />
     <state x="184" y="6" key="SettingsEditor" timestamp="1575334169551">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1575334169551" />
-    <state x="384" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1577770626085">
+    <state x="384" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1578985696484">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="384" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1577770626085" />
+    <state x="384" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1578985696484" />
     <state x="380" y="0" width="606" height="728" key="find.popup" timestamp="1575337432192">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -126,9 +134,9 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1577627923019" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1577503068825">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1578816575896">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1577503068825" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1578816575896" />
   </component>
 </project>
