@@ -1,9 +1,11 @@
-//create array of empty string to set it into string to not get NaN error
 let arr = [];
 let startadress;
 let rws;
+let rd = document.querySelector('.rd')
 let newtd;
 let adr = [];
+let obcode = [];
+let obcdebin = [];
 let passone = document.querySelector('.passon');
 let cadr = document.querySelector(".cadr");
 let tblhd = document.querySelector('.thd');
@@ -13,10 +15,17 @@ let tbl = document.querySelector('.tbdy');
 let fl = document.querySelector('.form-control-file');
 let sub = document.querySelector('.ss');
 let newrow;
-let symbtbl = document.querySelector('.tbdysym');
+let adrsbin = []
+let symbtblc = document.querySelectorAll('.tbdysymc');
+let symbtbl = document.querySelectorAll('.tbdysym');
 let ob = document.querySelector('.ob');
+let hte = document.querySelector('.hte');
 let pastw = document.querySelector('.passtw');
 let symboltable = [[], []];
+let ans = document.querySelector('.ans');
+let index = [];
+indexbin = [];
+let k;
 
 //function to read assembly problem and turn it into 2d array
 function readSingleFile(evt) {
@@ -40,21 +49,21 @@ function readSingleFile(evt) {
 }
 
 //read file from file uploader in html
+
 fl.addEventListener('change', readSingleFile, false);
+fl.addEventListener('change', e => {
+    rd.removeAttribute("disabled");
+});
 
 
 //create display the file after parse it into an array
 //create header
-fl.addEventListener('change', e => {
-    tblcnt.innerHTML = '<h1>Program</h1><table class="table-bordered asmtbl"><thead><tr class="thd"><th class="p-1">label</th><th class="p-1">mnemonic</th><th class="p-1">operand</th></tr></thead><tbody class="tbdy"></tbody></table>';
 
-});
 //event to handle new array of values
 
 sub.addEventListener('submit', e => {
+    tblcnt.innerHTML = '<h4>Program</h4><table class="table-bordered asmtbl"><thead><tr class="thd"><th class="p-1">label</th><th class="p-1">mnemonic</th><th class="p-1">operand</th></tr></thead><tbody class="tbdy"></tbody></table>';
     tbl = document.querySelector('.tbdy');
-
-
     e.preventDefault();
     for (let i = 0; i < arr.length; i++) {
         newrow = document.createElement("TR");
@@ -82,6 +91,10 @@ sub.addEventListener('submit', e => {
     }
 //declare first address inside the event because javascript is async language (0x) for hex in js
     startadress = parseInt("0x" + arr[0][2]);
+    cadr.removeAttribute("disabled");
+    fl.setAttribute("disabled", "");
+    rd.setAttribute("disabled", "");
+
 });
 //create array of addresses
 
@@ -143,8 +156,8 @@ cadr.addEventListener('click', e => {
 //symbol table
 
     passone = document.querySelector('.passon');
-    passone.innerHTML = '<h1>pass one</h1><table class="table-bordered"><thead><tr class=""><th class="p-1">Symbol</th><th class="p-1">Adress</th></tr></thead><tbody class="tbdysym"></tbody></table>';
-    symbtbl = document.querySelector('.tbdysym')
+    passone.innerHTML = '<h4>pass one</h4><table class="table-bordered"><thead><tr class=""><th class="p-1">Symbol</th><th class="p-1">Adress</th></tr></thead><tbody class="tbdysym"></tbody></table>';
+    symbtbl = document.querySelector('.tbdysym');
     for (let a = 0; a < arr.length; a++) {
         if (arr[a][0] == "" || a == 0) {
 
@@ -168,25 +181,28 @@ cadr.addEventListener('click', e => {
 
         }
     }
-
+    ob.removeAttribute("disabled");
+    cadr.setAttribute("disabled", "");
+    rd.setAttribute("disabled", "");
 });
 
-let k
 ob.addEventListener('click', e => {
-    pastw.innerHTML += "<h2>pass two</h2>"
+    pastw.innerHTML += "<h4>pass two</h4>";
     let indx;
     let X;
     for (let i = 1; i < arr.length - 1; i++) {
         // console.log(arr[i][2].value === symboltable[0][i].value)
         if (arr[i][2].search(',X') == -1) {
             X = 0;
+            index.push(X);
+
         } else if (arr[i][2].search(',X') != -1) {
 
-            let nw = arr[i][2].trim().slice(0, -2)
-            arr[i][2] = nw
+            let nw = arr[i][2].trim().slice(0, -2);
+            arr[i][2] = nw;
 
             X = 1;
-
+            index.push(X);
         }
         symboltable[0].forEach((symbl, index) => {
 
@@ -194,13 +210,98 @@ ob.addEventListener('click', e => {
                 indx = index;
             }
 
-        })
-        //indexed
+        });
+        if (arr[i][1] == "RESW" || arr[i][1] == "RESB") {
+            obcode.push("no obcode")
+        } else if (arr[i][1] == "WORD")
+            //indexed
+        {
 
-        if (arr[i][1] != "WORD" && arr[i][1] != "BYTE" && arr[i][1] != "RESW" && arr[i][1] != "RESB") {
-            //pick address from symbol table
-            pastw.innerHTML += `<div class="pstwtbl"><h5>${i} - ${arr[i][1]} - ${arr[i][2]} </h5><table class="table-bordered"><thead><tr class=""><th class="p-1">OP-Code</th><th class="p-1">X</th><th class="p-1">ADDRESS</th></tr></thead><tbody class="tbdysym"><tr><td></td><td>${X}</td><td>${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td></tr></tbody></table></div>`;
+            obcode.push(parseInt(arr[i][2]).toString(16))
+        } else if (arr[i][1] == "BYTE" && arr[i][2][0] == 'X' && arr[i][2][1] == '`') {
+
+            obcode.push((Math.floor((arr[i][2].length - 3) / 2)).toString(16));
+
+        } else if (arr[i][1] == "BYTE" && arr[i][2][0] == 'C' && arr[i][2][1] == '`') {
+            obcode.push((arr[i][2].length - 4).toString(16));
+
+
+        } else if ((arr[i][1] == "BYTE" && arr[i][2][0] != 'C' && arr[i][2][1] != '`') || arr[i][1] == "BYTE" && arr[i][2][0] != 'X' && arr[i][2][1] != '`') {
+            obcode.push(parseInt(arr[i][2]).toString(16))
+        }
+        let opdx;
+        if (!(arr[i][1] != "WORD" && arr[i][1] != "BYTE" && arr[i][1] != "RESW" && arr[i][1] != "RESB")) {
+            continue;
+        }
+        opcodetable.forEach((opcd, index) => {
+            if (opcd.memonic == arr[i][1]) {
+                opdx = index;
+                obcode.push(opcodetable[opdx].opcode)
+            }
+        })
+        pastw.innerHTML +=
+
+            `<div class="pstwtbl">
+<h5>${i} - ${arr[i][1]} - ${arr[i][2]}
+</h5>
+<table class="table-bordered">
+    <thead>
+    <tr class="">
+        <th class="p-1">OP-Code</th>
+        <th class="p-1">X</th>
+        <th class="p-1">ADDRESS</th>
+    </tr>
+    </thead>
+    <tbody class="tbdysymc">
+    <tr>
+        <td>${opcodetable[opdx].opcode}</td>
+        <td>${X}</td>
+        <td class="adrsss">${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td>
+    </tr>
+    </tbody>
+</table>
+</div>`;
+    }
+
+    let z;
+    let a;
+    for (let i = 0; i < obcode.length; i++) {
+        z = "";
+        for (let g = 0; g < obcode[i].length; g++) {
+            if (obcode[i] == "no obcode") {
+                z = "no opcode";
+                break
+            } else {
+                a += parseInt(adr[i][g], 16).toString(2).padStart(4, "0")
+                z += parseInt(obcode[i][g], 16).toString(2).padStart(4, "0")
+            }
+
+        }
+
+        obcdebin.push(z.padStart(8, "0"));
+
+    }
+    symbtblc = document.querySelectorAll('.tbdysymc');
+    let i = 0;
+    let v = 0;
+    while (i < symbtblc.length) {
+        if (obcdebin[v] == "no opcode") {
+            v++
+        } else {
+            symbtblc[i].innerHTML += `<tr><td>${obcdebin[v]}</td><td>${index[v]}</td><td>
+</td></tr><tr><td COLSPAN="3"></td></tr>`;
+            v++;
+            i++;
         }
     }
+
+
+    ob.setAttribute("disabled", "");
+    hte.removeAttribute("disabled");
+    console.log(index)
+});
+
+hte.addEventListener('click', e => {
+    //every hex digit to binary binary
 
 });
