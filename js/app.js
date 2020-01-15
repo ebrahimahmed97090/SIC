@@ -15,7 +15,8 @@ let tbl = document.querySelector('.tbdy');
 let fl = document.querySelector('.form-control-file');
 let sub = document.querySelector('.ss');
 let newrow;
-let adrsbin = []
+let adrsstr = [];
+let adrbin = [];
 let symbtblc = document.querySelectorAll('.tbdysymc');
 let symbtbl = document.querySelectorAll('.tbdysym');
 let ob = document.querySelector('.ob');
@@ -239,6 +240,7 @@ ob.addEventListener('click', e => {
                 obcode.push(opcodetable[opdx].opcode)
             }
         })
+        adrsstr.push(symboltable[1][indx + 1].toString(16).padStart(4, "0"));
         pastw.innerHTML +=
 
             `<div class="pstwtbl">
@@ -249,14 +251,14 @@ ob.addEventListener('click', e => {
     <tr class="">
         <th class="p-1">OP-Code</th>
         <th class="p-1">X</th>
-        <th class="p-1">ADDRESS</th>
+        <th class="p-1 text-center">ADDRESS</th>
     </tr>
     </thead>
     <tbody class="tbdysymc">
     <tr>
-        <td>${opcodetable[opdx].opcode}</td>
-        <td>${X}</td>
-        <td class="adrsss">${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td>
+        <td class="text-center opcdsp">${opcodetable[opdx].opcode}</td>
+        <td class="text-center">${X}</td>
+        <td class="adrsss text-center adrsps">${symboltable[1][indx + 1].toString(16).padStart(4, "0")}</td>
     </tr>
     </tbody>
 </table>
@@ -267,20 +269,35 @@ ob.addEventListener('click', e => {
     let a;
     for (let i = 0; i < obcode.length; i++) {
         z = "";
+
         for (let g = 0; g < obcode[i].length; g++) {
             if (obcode[i] == "no obcode") {
                 z = "no opcode";
                 break
             } else {
-                a += parseInt(adr[i][g], 16).toString(2).padStart(4, "0")
+
                 z += parseInt(obcode[i][g], 16).toString(2).padStart(4, "0")
             }
 
         }
 
-        obcdebin.push(z.padStart(8, "0"));
+        obcdebin.push(z.padStart(8, "0").replace(/\d{4}(?=.)/g, '$& '));
+
 
     }
+    for (let i = 0; i < adrsstr.length; i++) {
+        a = ""
+        for (let g = 0; g < adrsstr[i].length; g++) {
+
+            if (g == 0) {
+                a += (parseInt(adrsstr[i][g], 16).toString(2).padStart(3, "0") + " ")
+            } else {
+                a += (parseInt(adrsstr[i][g], 16).toString(2).padStart(4, "0") + " ")
+            }
+        }
+        adrbin.push(a);
+    }
+
     symbtblc = document.querySelectorAll('.tbdysymc');
     let i = 0;
     let v = 0;
@@ -288,8 +305,8 @@ ob.addEventListener('click', e => {
         if (obcdebin[v] == "no opcode") {
             v++
         } else {
-            symbtblc[i].innerHTML += `<tr><td>${obcdebin[v]}</td><td>${index[v]}</td><td>
-</td></tr><tr><td COLSPAN="3"></td></tr>`;
+            symbtblc[i].innerHTML += `<tr><td>${obcdebin[v]}</td><td class="text-right">${index[v]}</td><td>${adrbin[v]}
+</td></tr><tr><td class="text-center">op hex</td><td COLSPAN="2" class="text-center">add hex</td></tr>`;
             v++;
             i++;
         }
@@ -298,7 +315,7 @@ ob.addEventListener('click', e => {
 
     ob.setAttribute("disabled", "");
     hte.removeAttribute("disabled");
-    console.log(index)
+    console.log(adrbin)
 });
 
 hte.addEventListener('click', e => {

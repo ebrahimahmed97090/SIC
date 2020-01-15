@@ -1,39 +1,55 @@
 .innum {
     width: 100px;
 }
+
 .innumm {
     width: 80px;
     margin: 0 auto;
 }
-.ofl{
+
+.ofl {
     overflow-x: scroll;
 
 }
-.tdm
-{
-    padding: 0!important;
-    width: 85px!important;
+
+.tdm {
+    padding: 0 !important;
+    width: 85px !important;
 
 }
-.astrsk{
-    font-size:130px;
+
+.astrsk {
+    font-size: 130px;
 }
-form{
-    display: contents!important;
+
+form {
+    display: contents !important;
 }
-.pstwtbl{
+
+.pstwtbl {
     display: inline-block;
-    width: 200px;
+    width: 30%;
 }
-.assmb
-{
+
+.assmb {
     max-width: 21%;
 }
-.fls{
+
+.fls {
     width: 30%;
     display: inline-block;
 }
-.passon
-{
+
+.passon {
     max-width: 13%;
+}
+
+.opcdsp {
+    letter-spacing: 21px;
+
+    padding-left: 15px;
+}
+.adrsps
+{letter-spacing: 26px;
+    padding-left: 11px;
 }
