@@ -29,10 +29,11 @@ form {
 .pstwtbl {
     display: inline-block;
     width: 30%;
+    margin: 10px;
 }
 
 .assmb {
-    max-width: 21%;
+    max-width: 23%;
 }
 
 .fls {
@@ -49,7 +50,13 @@ form {
 
     padding-left: 15px;
 }
-.adrsps
-{letter-spacing: 26px;
+
+.adrsps {
+    letter-spacing: 26px;
     padding-left: 11px;
+}
+
+.spcshex {
+    letter-spacing: 30px;
+    padding-left: 12px;
 }
