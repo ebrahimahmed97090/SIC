@@ -2,13 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dbbe446d-66ef-4992-bdeb-cb8fcae8ac45" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/rebuild.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RESB Test.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/inSIC.txt" beforeDir="false" afterPath="$PROJECT_DIR$/inSIC.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inSIC.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/optable.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/optable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/aa.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/ASCII.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/rebuild.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/rebuild.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/origin.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -33,6 +36,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -116,6 +120,11 @@
       <workItem from="1579301143589" duration="1401000" />
       <workItem from="1579339743170" duration="4000" />
       <workItem from="1579341675208" duration="12382000" />
+      <workItem from="1579360164713" duration="18576000" />
+      <workItem from="1579654604458" duration="2899000" />
+      <workItem from="1581619818226" duration="10760000" />
+      <workItem from="1581663835383" duration="6342000" />
+      <workItem from="1581756431119" duration="12931000" />
     </task>
     <servers />
   </component>
@@ -143,14 +152,16 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1579254806321" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1579259468262">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1581759360123">
+      <screen x="0" y="0" width="1366" height="736" />
     </state>
     <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1579259468262" />
-    <state x="384" y="189" key="com.intellij.ide.util.TipDialog" timestamp="1579341726289">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.736@0.0.1366.736" timestamp="1581759360123" />
+    <state x="384" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1581756444387">
+      <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="384" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579341726289" />
+    <state x="384" y="189" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1579654603247" />
+    <state x="384" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.736@0.0.1366.736" timestamp="1581756444387" />
     <state x="380" y="0" width="606" height="728" key="find.popup" timestamp="1575337432192">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -159,9 +170,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1579105058102" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1579292058599">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="346" y="50" width="672" height="686" key="search.everywhere.popup" timestamp="1581664200909">
+      <screen x="0" y="0" width="1366" height="736" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1579292058599" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1579360487069" />
+    <state x="346" y="50" width="672" height="686" key="search.everywhere.popup/0.0.1366.736@0.0.1366.736" timestamp="1581664200909" />
   </component>
 </project>

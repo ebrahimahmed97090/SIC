@@ -1,7 +1,16 @@
 .innum {
     width: 100px;
 }
+.wds{
+    width: 310px;
+    display: inline-block;
+    margin: 15px;
 
+}
+.htect{
+    width: 466px;
+
+}
 .innumm {
     width: 80px;
     margin: 0 auto;
